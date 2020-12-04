@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'graphene_django',
     'links',
     'users',
+    'mostrarPlaylist',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'graphql_jwt.middleware.JSONWebTokenMiddleware',
 ]
 
 ROOT_URLCONF = 'pixelstarmusic.urls'
@@ -78,8 +80,17 @@ WSGI_APPLICATION = 'pixelstarmusic.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'postgres',
+
+        'USER': 'postgres',
+
+        'PASSWORD': 'FrodidlbU08guqiw-3$r',
+
+        'HOST': '35.202.233.60',
+
+        'PORT': '5432',
     }
 }
 
@@ -128,7 +139,4 @@ STATIC_URL = '/static/'
 
 GRAPHENE = {
     'SCHEMA': 'pixelstarmusic.schema.schema',
-    #'MIDDLEWARE':  [
-    #    'graphql_jwt.middleware.JSONWebTokenMiddleware',
-    #],
 }
