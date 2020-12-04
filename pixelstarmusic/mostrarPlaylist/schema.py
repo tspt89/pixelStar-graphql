@@ -4,8 +4,6 @@ from django.contrib.auth import get_user_model
 
 from .models import mostrarPlaylist
 
-
-
 class mostrarPlaylistType(DjangoObjectType):
     class Meta:
         model = mostrarPlaylist
