@@ -18,11 +18,13 @@ from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 
-from mostrarPlaylist.views import redis, topGenero
+from mostrarPlaylist.views import redis, topGenero, topDiscos, topArtistas
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     path('top',redis),
     path('topgenero',topGenero),
+    path('topdiscos',topDiscos),
+    path('topartistas',topArtistas),
 ]
