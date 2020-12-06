@@ -7,7 +7,6 @@ blinker==1.4
 Brlapi==0.7.0
 certifi==2019.11.28
 chardet==3.0.4
-chrome-gnome-shell==0.0.0
 Click==7.0
 colorama==0.4.3
 command-not-found==0.3
@@ -88,7 +87,6 @@ requests-unixsocket==0.2.0
 rq==1.2.2
 rsa==4.6
 Rx==1.6.1
-screen-resolution-extra==0.0.0
 SecretStorage==2.3.1
 sentry-sdk==0.14.3
 simplejson==3.16.0
@@ -100,7 +98,6 @@ sqlparse==0.4.1
 systemd-python==234
 testresources==2.0.1
 ubuntu-advantage-tools==20.3
-ubuntu-drivers-common==0.0.0
 ufw==0.36
 unattended-upgrades==0.1
 uritemplate==3.0.1
