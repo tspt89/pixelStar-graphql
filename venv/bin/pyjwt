@@ -1,4 +1,4 @@
-#!/home/theo/Semestre/Proyectos/graphqlApi/venv/bin/python3.8
+#!/home/theo/Semestre/Proyectos/graphqlApi/pixelStar-graphql/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

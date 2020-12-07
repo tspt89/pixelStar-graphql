@@ -14,4 +14,4 @@ pip3 install redis
 pip3 install -U scikit-learn
 
 Execution:
-python3 manage.py runserver
+python3 pixelstarmusic/manage.py runserver

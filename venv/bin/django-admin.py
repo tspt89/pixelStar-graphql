@@ -1,4 +1,4 @@
-#!/home/theo/Semestre/Proyectos/graphqlApi/venv/bin/python3.8
+#!/home/theo/Semestre/Proyectos/graphqlApi/pixelStar-graphql/venv/bin/python3
 from django.core import management
 
 if __name__ == "__main__":

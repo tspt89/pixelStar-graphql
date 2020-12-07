@@ -145,7 +145,7 @@ def prediction(request):
     from spotipy.oauth2 import SpotifyClientCredentials
     from sklearn.metrics import accuracy_score
 
-    data = pd.read_csv('data.csv')
+    data = pd.read_csv('pixelstarmusic/data.csv')
 
     print(data.describe())
     print(data.info())
@@ -169,7 +169,7 @@ def prediction(request):
     score = accuracy_score(y_test, predicted)*100
     print("Accuracy using Gbc: ", round(score, 1), "%")
 
-    test = pd.read_csv('indie.csv')
+    test = pd.read_csv('pixelstarmusic/indie.csv')
 
     new_test_data = test[features]
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="22af8a2d155b479ba6971680d903d894",
