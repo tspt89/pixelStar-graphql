@@ -18,7 +18,7 @@ from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 from graphene_django.views import GraphQLView
 
-from mostrarPlaylist.views import redis, topGenero, topDiscos, topArtistas
+from mostrarPlaylist.views import redis, topGenero, topDiscos, topArtistas, prediction
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +27,5 @@ urlpatterns = [
     path('topgenero',topGenero),
     path('topdiscos',topDiscos),
     path('topartistas',topArtistas),
+    path('recomendado',prediction),
 ]

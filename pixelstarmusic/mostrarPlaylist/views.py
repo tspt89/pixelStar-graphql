@@ -8,7 +8,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 r = redis.StrictRedis(host='104.198.244.0', port=6379,	charset="utf-8",decode_responses=True)
 
-# Create your views here.
+# Create your views here. 
 def redis(request):
 	sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="22af8a2d155b479ba6971680d903d894",
 															   client_secret="e75127b7d9244deeb95385fc825715cf"))
@@ -137,3 +137,57 @@ def topDiscos(request):
 	#print(albums['name'], albums['artists'][0]['name'], albums['popularity'], albums['release_date'])
 
 	return JsonResponse(array, safe = False, json_dumps_params={'ensure_ascii': False})
+
+def prediction(request):
+    import spotipy
+    import pandas as pd #Dataframe, Series
+    from sklearn.model_selection import train_test_split
+    from spotipy.oauth2 import SpotifyClientCredentials
+    from sklearn.metrics import accuracy_score
+
+    data = pd.read_csv('data.csv')
+
+    print(data.describe())
+    print(data.info())
+
+    train, test = train_test_split(data, test_size = 0.15)
+
+    features = ["danceability", "loudness", "valence", "energy", "instrumentalness", "acousticness", "key", "speechiness","duration_ms"]
+    print("Training size: {}, Test size: {}".format(len(train),len(test)))
+
+    x_train = train[features]
+    y_train = train["target"]
+
+    x_test = test[features]
+    y_test = test["target"]
+
+
+    from sklearn.ensemble import GradientBoostingClassifier
+    gbc = GradientBoostingClassifier(n_estimators=100, learning_rate=1.0, max_depth=1, random_state=0)
+    gbc.fit(x_train, y_train)
+    predicted = gbc.predict(x_test)
+    score = accuracy_score(y_test, predicted)*100
+    print("Accuracy using Gbc: ", round(score, 1), "%")
+
+    test = pd.read_csv('indie.csv')
+
+    new_test_data = test[features]
+    sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="22af8a2d155b479ba6971680d903d894",
+                                                                   client_secret="e75127b7d9244deeb95385fc825715cf"))
+
+    pred = gbc.predict(new_test_data)
+
+    likedSongs = 0
+    i = 0
+    arr = []
+    for prediction in pred:
+        if(prediction == 1):
+            #print (str(i) + ": Song: " + test["song_title"][i] + ", By: "+ test["artist"][i])
+            res = {"song:":test["song_title"][i],"author:":test["artist"][i], "url":"https://open.spotify.com/track/"+test["id"][i]}
+            arr.append(res)
+            likedSongs= likedSongs + 1
+        i = i +1
+
+    print(arr)
+
+    return JsonResponse(arr, safe = False, json_dumps_params={'ensure_ascii': False})
