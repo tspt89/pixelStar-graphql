@@ -183,7 +183,7 @@ def prediction(request):
     for prediction in pred:
         if(prediction == 1):
             #print (str(i) + ": Song: " + test["song_title"][i] + ", By: "+ test["artist"][i])
-            res = {"song:":test["song_title"][i],"author:":test["artist"][i], "url":"https://open.spotify.com/track/"+test["id"][i]}
+            res = {"song":test["song_title"][i],"author":test["artist"][i], "url":"https://open.spotify.com/track/"+test["id"][i]}
             arr.append(res)
             likedSongs= likedSongs + 1
         i = i +1
